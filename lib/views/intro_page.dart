@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/AppColors.dart';
-// import 'home_page.dart';
+import 'main_page.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -89,7 +89,9 @@ class IntroPage extends StatelessWidget {
                       ],
                     ),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => const MainPage()));
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,

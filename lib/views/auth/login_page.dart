@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
-import '../constants/AppColors.dart';
+import '../../constants/AppColors.dart';
+// import 'sign_up_page.dart';
+// import 'home_page.dart';
 
-
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  final _nameController     = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
   final _emailController    = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword     = true;
-  bool _agreeToTerms        = false;
 
   @override
   void dispose() {
-    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -42,7 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 // Header
                 const Text(
-                  "Create account ✨",
+                  "Welcome back 👋",
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w800,
@@ -52,22 +49,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  "Join us and start shopping today",
+                  "Sign in to your account",
                   style: TextStyle(fontSize: 15, color: AppColors.lightSubtext),
                 ),
 
                 const SizedBox(height: 40),
-
-                // Name field
-                _buildLabel("Full Name"),
-                const SizedBox(height: 8),
-                _buildTextField(
-                  controller: _nameController,
-                  hint: "John Doe",
-                  icon: Icons.person_outline,
-                ),
-
-                const SizedBox(height: 20),
 
                 // Email field
                 _buildLabel("Email"),
@@ -85,7 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 8),
                 _buildTextField(
                   controller: _passwordController,
-                  hint: "Min. 8 characters",
+                  hint: "••••••••",
                   icon: Icons.lock_outline,
                   obscure: _obscurePassword,
                   suffix: IconButton(
@@ -98,48 +84,25 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 12),
 
-                // Terms checkbox
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 22,
-                      height: 22,
-                      child: Checkbox(
-                        value: _agreeToTerms,
-                        onChanged: (v) => setState(() => _agreeToTerms = v ?? false),
-                        activeColor: AppColors.primary,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                      ),
+                // Forgot password
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                    child: const Text(
+                      "Forgot password?",
+                      style: TextStyle(color: AppColors.primary, fontSize: 13),
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: RichText(
-                        text: const TextSpan(
-                          style: TextStyle(fontSize: 13, color: AppColors.lightSubtext),
-                          children: [
-                            TextSpan(text: "I agree to the "),
-                            TextSpan(
-                              text: "Terms of Service",
-                              style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600),
-                            ),
-                            TextSpan(text: " and "),
-                            TextSpan(
-                              text: "Privacy Policy",
-                              style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
 
-                const SizedBox(height: 32),
+                const SizedBox(height: 28),
 
-                // Sign up button
-                _buildPrimaryButton("Create Account", onPressed: _agreeToTerms ? () {} : null),
+                // Login button
+                _buildPrimaryButton("Sign In", onPressed: () {}),
 
                 const SizedBox(height: 28),
 
@@ -166,17 +129,17 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 const SizedBox(height: 32),
 
-                // Login link
+                // Sign up link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Already have an account? ", style: TextStyle(color: AppColors.lightSubtext)),
+                    const Text("Don't have an account? ", style: TextStyle(color: AppColors.lightSubtext)),
                     GestureDetector(
                       onTap: () {
-                        // Navigator.pop(context);
+                        // Navigator.push(context, MaterialPageRoute(builder: (_) => const SignUpPage()));
                       },
                       child: const Text(
-                        "Sign In",
+                        "Sign Up",
                         style: TextStyle(
                           color: AppColors.primary,
                           fontWeight: FontWeight.w700,
@@ -243,25 +206,21 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       );
 
-  Widget _buildPrimaryButton(String label, {required VoidCallback? onPressed}) =>
+  Widget _buildPrimaryButton(String label, {required VoidCallback onPressed}) =>
       SizedBox(
         width: double.infinity,
         height: 54,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            gradient: onPressed != null ? AppColors.primaryGradient : const LinearGradient(
-              colors: [Color(0xFFCCCCCC), Color(0xFFBBBBBB)],
-            ),
+            gradient: AppColors.primaryGradient,
             borderRadius: BorderRadius.circular(14),
-            boxShadow: onPressed != null
-                ? [
+            boxShadow: [
               BoxShadow(
                 color: AppColors.primary.withOpacity(0.35),
                 blurRadius: 16,
                 offset: const Offset(0, 8),
               ),
-            ]
-                : [],
+            ],
           ),
           child: ElevatedButton(
             onPressed: onPressed,
