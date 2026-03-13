@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/product_model.dart';
+import '../routes/app_routes.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
@@ -8,7 +9,15 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(
+          context,
+          AppRoutes.productDetail,
+          arguments: product,
+        );
+      },
+      child:Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -19,7 +28,6 @@ class ProductCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(child: Center(child: Image.asset(product.image))),
-
           Text(
             product.name,
             style: const TextStyle(fontWeight: FontWeight.bold),
@@ -28,6 +36,7 @@ class ProductCard extends StatelessWidget {
           Text("${product.price} \$"),
         ],
       ),
+    )
     );
   }
 }
