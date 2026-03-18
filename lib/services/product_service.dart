@@ -1,7 +1,6 @@
 import '../models/product_model.dart';
 
 class ProductService {
-
   List<ProductModel> getProducts() {
     return const [
       ProductModel(

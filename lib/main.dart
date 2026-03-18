@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nextphone/routes/app_pages.dart';
 import 'package:nextphone/views/home/home_page.dart';
+import 'package:nextphone/views/main_page.dart';
 import 'views/intro_page.dart';
 import 'routes/app_routes.dart';
 
@@ -17,14 +18,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.home,
       routes: {
-        AppRoutes.home: (context)=> const HomePage(),
+        AppRoutes.home: (context)=> const MainPage(),
         // AppRoutes.cart: (context)=> const CartPage(),
       },
       onGenerateRoute: AppPages.generateRoute,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const IntroPage(),
     );
   }
 }

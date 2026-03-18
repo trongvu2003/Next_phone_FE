@@ -147,8 +147,8 @@ class _ProductDetailState extends State<ProductDetail> {
                                       });
                                     },
                                     child: Container(
-                                      width: 35,
-                                      height: 35,
+                                      width: 30,
+                                      height: 30,
                                       decoration: BoxDecoration(
                                         color: color,
                                         shape: BoxShape.circle,
